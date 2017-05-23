@@ -1,0 +1,32 @@
+/* red:         #d62c19
+ * orange:      #efa811
+ * light-grey:  #f0f2f7
+ * dark:        #201324
+*/
+
+html {
+    background-color: #f0f2f7;
+    color: #201324;
+    margin-top: -22px;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+p {
+    color: #d62c19
+}
+
+#banner {
+    background-color: #d62c19;
+    height: 75px;
+    text-align: center;
+    padding: 1em;
+}
+
+#banner2 {
+    background-color: #efa811;
+    height: 15px;
+}
