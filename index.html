@@ -4,6 +4,8 @@
         <link rel="stylesheet" href="css/cryptocount_light.css">
         <script>
         var baseurl = "https://api.coinmarketcap.com/v1/ticker/";
+        var coins = ['bitcoin', 'ethereum', 'ripple', 'nem', 'maidsafecoin', 'gridcoin'];
+        
         var xmlhttp = new XMLHttpRequest();
         var coinData;
         xmlhttp.onreadystatechange = function() {
