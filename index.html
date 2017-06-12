@@ -1,7 +1,21 @@
 <html lang="en">
     <head>
         <meta charset="utf-8"/>
-        <link rel="stylesheet" href="cryptocount_light.css">
+        <link rel="stylesheet" href="css/cryptocount_light.css">
+        <script>
+        var baseurl = "https://api.coinmarketcap.com/v1/ticker/";
+        var xmlhttp = new XMLHttpRequest();
+        var coinData;
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                coinData = JSON.parse(this.responseText);
+            } else {
+                coinData = "Something went wrong.";
+            }
+        };
+        xmlhttp.open("GET", baseurl, true);
+        xmlhttp.send();
+        </script>
     </head>
     <body>
         <div id="banner">
@@ -9,17 +23,8 @@
         </div>
         <div id="banner2"></div>
 
-        <script>
-            var xmlhttp = new XMLHttpRequest();
-            var coinData;
-            xmlhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    coinData = JSON.parse(this.responseText);
-                }
-            };
-            xmlhttp.open("GET", "https://api.coinmarketcap.com/v1/ticker/", true);
-            xmlhttp.send();
-        </script>
+
+
         <button type="button" onclick="document.getElementById('btc').innerHTML = coinData[0].price_usd">
             Click me to display BTC.</button>
         <p id="btc"></p>
