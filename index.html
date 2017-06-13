@@ -2,61 +2,8 @@
     <head>
         <meta charset="utf-8"/>
         <link rel="stylesheet" href="css/cryptocount_light.css">
-        <script>
-        var baseurl = "https://api.coinmarketcap.com/v1/ticker/";
-        var coins = ['bitcoin', 'ethereum', 'ripple', 'nem', 'maidsafecoin', 'gridcoin'];
-        var tabs = ['Overview'];
-
-        function getUSD(ticker) {
-            var xhttp = new XMLHttpRequest();
-            var coinData;
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    coinData = JSON.parse(this.responseText);
-                    document.getElementById("btc").innerHTML = '$' + coinData[0].price_usd;
-                }
-            };
-            xhttp.open("GET", baseurl + ticker + "/", true);
-            xhttp.send();
-        }
-
-        function addNewCrypto() {
-            var selector = document.createElement("SELECT");
-            selector.setAttribute('id', 'addselector');
-
-            for (i=0; i < coins.length; i++) {
-                var option = document.createElement("option");
-                option.text = coins[i];
-                selector.add(option);
-            };
-            var tabnav = document.getElementById("tabnav");
-            tabnav.appendChild(selector);
-
-            var button = document.createElement("BUTTON");
-            button.setAttribute('id', 'addcheck');
-            button.setAttribute('onclick', 'insertNewCrypto()');
-
-            var text = document.createTextNode("✓");
-            button.appendChild(text);
-            tabnav.appendChild(button);
-        }
-
-        function insertNewCrypto() {
-            var ticker = document.getElementById("addselector");
-            var check = document.getElementById("addcheck");
-            var tabnav = document.getElementById("tabnav");
-            tabs.push(ticker.value);
-
-            var newButton = document.createElement("BUTTON");
-            var newText = document.createTextNode(ticker.value);
-            newButton.appendChild(newText);
-
-            ticker.parentNode.removeChild(ticker);
-            check.parentNode.removeChild(check);
-
-            tabnav.insertBefore(newButton, document.getElementById("addButton"));
-        }
-        </script>
+        <script src="js/index.js"></script>
+        <script src="js/coindata.js"></script>
     </head>
     <body>
         <div id="banner">
@@ -64,32 +11,26 @@
         </div>
         <div id="banner2"></div>
 
-        <select id="dropdown"></select>
+        <div id="container">
+            <div id="overview">
+                <h2>[TOTAL VALUE PLACEHOLDER]</h2>
+                <p id="btc"></p>
+            </div>
 
-        <script>
-        var dropdown = document.getElementById("dropdown");
-        for (i=0; i < coins.length; i++) {
-            var option = document.createElement("option");
-            option.text = coins[i];
-            dropdown.add(option);
-        };
-        </script>
+            <!-- dynamically create new divs for added currencies -->
 
-        <button type="button" onclick="getUSD(dropdown.value)">
-            Click me to display price (USD).</button>
-        <p id="btc"></p>
-
-        <div id="tabnav">
-            <script>
-            var tabnav = document.getElementById("tabnav");
-            for (i = 0; i < tabs.length; i++) {
-                var b = document.createElement("BUTTON");
-                var t = document.createTextNode(tabs[i]);
-                b.appendChild(t);
-                tabnav.appendChild(b);
-            }
-            </script>
-            <button id="addButton" class="tablinks" onclick="addNewCrypto()">+</button>
-        </div>
+            <div id="tabnav">
+                <script>
+                var tabnav = document.getElementById("tabnav");
+                for (i = 0; i < tabs.length; i++) {
+                    var b = document.createElement("BUTTON");
+                    var t = document.createTextNode(tabs[i]);
+                    b.appendChild(t);
+                    tabnav.appendChild(b);
+                }
+                </script>
+                <button id="addNewCrypto" class="tablinks" onclick="addNewCrypto()">+</button>
+            </div> <!-- tabnav -->
+        </div> <!-- container -->
     </body>
 </html>
