@@ -5,6 +5,7 @@
         <script>
         var baseurl = "https://api.coinmarketcap.com/v1/ticker/";
         var coins = ['bitcoin', 'ethereum', 'ripple', 'nem', 'maidsafecoin', 'gridcoin'];
+        var tabs = ['Overview'];
 
         function getUSD(ticker) {
             var xhttp = new XMLHttpRequest();
@@ -17,6 +18,43 @@
             };
             xhttp.open("GET", baseurl + ticker + "/", true);
             xhttp.send();
+        }
+
+        function addNewCrypto() {
+            var selector = document.createElement("SELECT");
+            selector.setAttribute('id', 'addselector');
+
+            for (i=0; i < coins.length; i++) {
+                var option = document.createElement("option");
+                option.text = coins[i];
+                selector.add(option);
+            };
+            var tabnav = document.getElementById("tabnav");
+            tabnav.appendChild(selector);
+
+            var button = document.createElement("BUTTON");
+            button.setAttribute('id', 'addcheck');
+            button.setAttribute('onclick', 'insertNewCrypto()');
+
+            var text = document.createTextNode("✓");
+            button.appendChild(text);
+            tabnav.appendChild(button);
+        }
+
+        function insertNewCrypto() {
+            var ticker = document.getElementById("addselector");
+            var check = document.getElementById("addcheck");
+            var tabnav = document.getElementById("tabnav");
+            tabs.push(ticker.value);
+
+            var newButton = document.createElement("BUTTON");
+            var newText = document.createTextNode(ticker.value);
+            newButton.appendChild(newText);
+
+            ticker.parentNode.removeChild(ticker);
+            check.parentNode.removeChild(check);
+
+            tabnav.insertBefore(newButton, document.getElementById("addButton"));
         }
         </script>
     </head>
@@ -40,5 +78,18 @@
         <button type="button" onclick="getUSD(dropdown.value)">
             Click me to display price (USD).</button>
         <p id="btc"></p>
+
+        <div id="tabnav">
+            <script>
+            var tabnav = document.getElementById("tabnav");
+            for (i = 0; i < tabs.length; i++) {
+                var b = document.createElement("BUTTON");
+                var t = document.createTextNode(tabs[i]);
+                b.appendChild(t);
+                tabnav.appendChild(b);
+            }
+            </script>
+            <button id="addButton" class="tablinks" onclick="addNewCrypto()">+</button>
+        </div>
     </body>
 </html>
