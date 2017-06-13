@@ -9,8 +9,6 @@ var tabs = ['Overview'];
 // An array of the tabs at the bottom of the screen. These represent only the
 // coins which you are holding.
 
-var tabNavigator = document.getElementById("tabnav");
-
 // --- SELECTOR FOR NEW CRYPTOCURRENCIES TO ADD TO PORTFOLIO ---
 var addNewCoins = coins;
 var addNewSelector = document.createElement("SELECT");
@@ -50,15 +48,15 @@ function insertNewCrypto() {
     newButton.appendChild(newText);
     newButton.setAttribute("class", "tablinks");
 
+    tabnav.insertBefore(newButton, document.getElementById("addNewCrypto"));
     newCryptoCleanUp();
-    tabNavigator.insertBefore(newButton, document.getElementById("addNewCrypto"));
 }
 
 function newCryptoCleanUp() {
     // Clean up the dropdown and checkbox elements
     addNewSelector.parentNode.removeChild(addNewSelector);
-    addNewSelector.remove(addNewSelector.selectedIndex);
     addNewSelector.selectedIndex = 0;
+    addNewSelector.remove(addNewSelector.selectedIndex);
 
     confirmCoinBtn.parentNode.removeChild(confirmCoinBtn);
 }
