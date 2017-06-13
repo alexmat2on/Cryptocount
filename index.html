@@ -5,18 +5,19 @@
         <script>
         var baseurl = "https://api.coinmarketcap.com/v1/ticker/";
         var coins = ['bitcoin', 'ethereum', 'ripple', 'nem', 'maidsafecoin', 'gridcoin'];
-        
-        var xmlhttp = new XMLHttpRequest();
-        var coinData;
-        xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                coinData = JSON.parse(this.responseText);
-            } else {
-                coinData = "Something went wrong.";
-            }
-        };
-        xmlhttp.open("GET", baseurl, true);
-        xmlhttp.send();
+
+        function getUSD(ticker) {
+            var xhttp = new XMLHttpRequest();
+            var coinData;
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    coinData = JSON.parse(this.responseText);
+                    document.getElementById("btc").innerHTML = '$' + coinData[0].price_usd;
+                }
+            };
+            xhttp.open("GET", baseurl + ticker + "/", true);
+            xhttp.send();
+        }
         </script>
     </head>
     <body>
@@ -25,10 +26,19 @@
         </div>
         <div id="banner2"></div>
 
+        <select id="dropdown"></select>
 
+        <script>
+        var dropdown = document.getElementById("dropdown");
+        for (i=0; i < coins.length; i++) {
+            var option = document.createElement("option");
+            option.text = coins[i];
+            dropdown.add(option);
+        };
+        </script>
 
-        <button type="button" onclick="document.getElementById('btc').innerHTML = coinData[0].price_usd">
-            Click me to display BTC.</button>
+        <button type="button" onclick="getUSD(dropdown.value)">
+            Click me to display price (USD).</button>
         <p id="btc"></p>
     </body>
 </html>
