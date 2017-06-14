@@ -1,3 +1,4 @@
+var baseurl = "https://api.coinmarketcap.com/v1/ticker/";
 var coinData;
 // Data about every coin on CoinMarketCap. updateData(); will refresh the values
 
