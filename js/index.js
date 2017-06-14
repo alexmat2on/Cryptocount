@@ -12,7 +12,7 @@ var addNewCoins = coins;
 var addNewSelector = document.createElement("SELECT");
 addNewSelector.setAttribute('id', 'addNewSelector');
 
-for (i=0; i < addNewCoins.length; i++) {
+for (var i=0; i < addNewCoins.length; i++) {
     var option = document.createElement("option");
     option.text = addNewCoins[i];
     addNewSelector.add(option);
@@ -62,7 +62,7 @@ function refreshNavTabs() {
     var tabnav = document.getElementById("tabnav");
     deleteNavTabs();
 
-    for (i = 0; i < tabs.length; i++) {
+    for (var i = 0; i < tabs.length; i++) {
         var newButton = document.createElement("BUTTON");
         var currentTab = tabs[i];
         newButton.setAttribute("class", "tablinks");

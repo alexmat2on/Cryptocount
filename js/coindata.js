@@ -14,7 +14,7 @@ function updateData() {
 }
 
 function getUSD(coinName) {
-    for (i = 0; i < coinData.length; i++) {
+    for (var i = 0; i < coinData.length; i++) {
         if (coinData[i].id == coinName || coinData[i].name == coinName) {
             return coinData[i].price_usd;
             break;

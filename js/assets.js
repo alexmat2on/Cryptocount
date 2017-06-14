@@ -3,7 +3,7 @@ var assetDivs = [];
 updateAssetDivs();
 
 function updateAssetDivs() {
-    for (i=0; i < tabs.length; i++) {
+    for (var i=0; i < tabs.length; i++) {
         if (!document.getElementById(tabs[i])) {
             var newAsset = document.createElement("DIV");
             newAsset.setAttribute("id", tabs[i]);
@@ -33,7 +33,7 @@ function openCrypto(evt, crypt) {
 
     // Get all elements with class="tabcontent" and hide them
     tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
+    for (o = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
     }
 
