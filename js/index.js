@@ -34,6 +34,7 @@ confirmCoinBtn.appendChild(confirmCoinTxt);
 function addNewCrypto() {
     // Creates a new dropdown menu to select a new currency to track, as well
     // as a checkbox button to confirm your selection.
+    updateData();
     tabnav.appendChild(addNewSelector);
     tabnav.appendChild(confirmCoinBtn);
 }

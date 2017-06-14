@@ -1,16 +1,22 @@
-// Where the 'ticker' parameter is the name of the cryptocurrency
-// to retrieve the data about.
-// Eg. 'bitcoin', 'ethereum', etc.
+var coinData;
+// Data about every coin on CoinMarketCap. updateData(); will refresh the values
 
-function getUSD(ticker) {
+function updateData() {
     var xhttp = new XMLHttpRequest();
-    var coinData;
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             coinData = JSON.parse(this.responseText);
-            document.getElementById(ticker+"_price").innerHTML = '$' + coinData[0].price_usd;
         }
     };
-    xhttp.open("GET", baseurl + ticker + "/", true);
+    xhttp.open("GET", baseurl, true);
     xhttp.send();
+}
+
+function getUSD(coinName) {
+    for (i = 0; i < coinData.length; i++) {
+        if (coinData[i].id == coinName || coinData[i].name == coinName) {
+            return coinData[i].price_usd;
+            break;
+        }
+    }
 }
