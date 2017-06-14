@@ -4,17 +4,26 @@ updateAssetDivs();
 
 function updateAssetDivs() {
     for (i=0; i < tabs.length; i++) {
-        var newAsset = document.createElement("DIV");
-        newAsset.setAttribute("id", tabs[i]);
-        newAsset.setAttribute("class", "tabcontent");
+        if (!document.getElementById(tabs[i])) {
+            var newAsset = document.createElement("DIV");
+            newAsset.setAttribute("id", tabs[i]);
+            newAsset.setAttribute("class", "tabcontent");
 
-        // Add a header with the name of asset on top
-        var header = document.createElement("H2");
-        header.appendChild(document.createTextNode(newAsset.id));
-        newAsset.appendChild(header);
+            // Add a header with the name of asset on top
+            var header = document.createElement("H2");
+            header.appendChild(document.createTextNode(newAsset.id));
+            newAsset.appendChild(header);
 
-        newAsset.style.display = "none";
-        assetDivs.push(document.createElement);
+            var price = document.createElement("H4");
+            price.setAttribute("id", newAsset.id+"_price");
+            price.appendChild(document.createTextNode(getUSD(newAsset.id)));
+            newAsset.appendChild(price);
+
+            newAsset.style.display = "block";
+            assetDivs.push(document.createElement);
+
+            document.body.appendChild(newAsset);
+        }
     }
 }
 

@@ -43,8 +43,9 @@ function insertNewCrypto() {
     // Removes dropdown and checkbox button, then adds the crypto to tab-nav
     tabs.push(addNewSelector.value);
 
-    newCryptoCleanUp();
+
     updateAssetDivs();
+    newCryptoCleanUp();
     refreshNavTabs();
 }
 

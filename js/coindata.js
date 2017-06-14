@@ -8,7 +8,7 @@ function getUSD(ticker) {
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             coinData = JSON.parse(this.responseText);
-            document.getElementById("btc").innerHTML = '$' + coinData[0].price_usd;
+            document.getElementById(ticker+"_price").innerHTML = '$' + coinData[0].price_usd;
         }
     };
     xhttp.open("GET", baseurl + ticker + "/", true);
