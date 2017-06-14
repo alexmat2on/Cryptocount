@@ -88,25 +88,40 @@ function openTab(evt, tabDiv) {
 function addAmount(assetDiv) {
     // Add a new amount of an asset to the portfolio.
     var asset = assetDiv.id;
-    var textAmount = document.getElementById(asset+"_amountAddInput").value;
+    var addAmount = document.getElementById(asset+"_amountAddInput");
+
+    var textAmount = addAmount.value;
+    textAmount = +textAmount + +localStorage.getItem(asset+"_amount");
+
+    localStorage.setItem(asset+"_amount", textAmount);
+    localStorage.setItem(asset+"_worth", textAmount*getUSD(asset));
 
     var amountP = document.getElementById(asset+"_amount");
     var worthP = document.getElementById(asset+"_worth");
 
-    amountP.innerHTML = "Amount: " + textAmount;
-    worthP.innerHTML = "Worth: $" + getUSD(asset)*textAmount;
+    amountP.innerHTML = "Amount: " + localStorage.getItem(asset+"_amount");
+    worthP.innerHTML = "Worth: $" + localStorage.getItem(asset+"_worth");
+
+    addAmount.value = "";
 }
 
 function removeAmount(assetDiv) {
     // Remove some amount of an asset from the portfolio.
     var asset = assetDiv.id;
-    var textAddAmount = document.getElementById(asset+"_amountAddInput").value;
-    var textRemoveAmount = document.getElementById(asset+"_amountRemoveInput").value;
+    var removeAmount = document.getElementById(asset+"_amountRemoveInput");
+    
+    var textAddAmount = localStorage.getItem(asset+"_amount");
+    var textRemoveAmount = removeAmount.value;
     var textAmount = textAddAmount - textRemoveAmount;
+
+    localStorage.setItem(asset+"_amount", textAmount);
+    localStorage.setItem(asset+"_worth", textAmount*getUSD(asset));
 
     var amountP = document.getElementById(asset+"_amount");
     var worthP = document.getElementById(asset+"_worth");
 
-    amountP.innerHTML = "Amount: " + textAmount;
-    worthP.innerHTML = "Worth: $" + getUSD(asset)*textAmount;
+    amountP.innerHTML = "Amount: " + localStorage.getItem(asset+"_amount");
+    worthP.innerHTML = "Worth: $" + localStorage.getItem(asset+"_worth");
+
+    removeAmount.value = "";
 }
