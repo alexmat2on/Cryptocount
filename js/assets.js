@@ -23,22 +23,22 @@ function updateAssetDivs() {
             worth.setAttribute("id", newAsset.id+"_worth");
 
             // Add a form to input the current amount of assets you hold
-            var amountInput = document.createElement("INPUT");
-            amountInput.setAttribute("id", newAsset.id+"_amountInput");
-            amountInput.setAttribute("type","text");
+            var amountAddInput = document.createElement("INPUT");
+            amountAddInput.setAttribute("id", newAsset.id+"_amountAddInput");
+            amountAddInput.setAttribute("type","text");
 
-            var acceptBtn = document.createElement("BUTTON");
-            var acceptBtnAction = "addAmount(" + newAsset.id + ");";
-            acceptBtn.appendChild(document.createTextNode("Add amount."));
-            acceptBtn.setAttribute("onclick",acceptBtnAction);
+            var addAcceptBtn = document.createElement("BUTTON");
+            var addAcceptBtnAction = "addAmount(" + newAsset.id + ");";
+            addAcceptBtn.appendChild(document.createTextNode("Add amount."));
+            addAcceptBtn.setAttribute("onclick",addAcceptBtnAction);
 
             // Add all the elements to newAsset.
             newAsset.appendChild(header);
             newAsset.appendChild(price);
             newAsset.appendChild(amount);
             newAsset.appendChild(worth);
-            newAsset.appendChild(amountInput);
-            newAsset.appendChild(acceptBtn);
+            newAsset.appendChild(amountAddInput);
+            newAsset.appendChild(addAcceptBtn);
 
             // Hide the new div, add it the array, and add it to the document
             newAsset.style.display = "none";
@@ -73,8 +73,9 @@ function openTab(evt, tabDiv) {
 }
 
 function addAmount(assetDiv) {
+    // Add a new amount of an asset to the portfolio.
     var asset = assetDiv.id;
-    var textAmount = document.getElementById(asset+"_amountInput").value;
+    var textAmount = document.getElementById(asset+"_amountAddInput").value;
 
     var amountP = document.getElementById(asset+"_amount");
     var worthP = document.getElementById(asset+"_worth");
