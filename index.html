@@ -12,24 +12,16 @@
         <div id="banner2"></div>
 
         <div id="container">
-            <div id="overview">
+            <div id="overview" class="tabcontent">
                 <h2>[TOTAL VALUE PLACEHOLDER]</h2>
                 <p id="btc"></p>
             </div>
 
-            <!-- dynamically create new divs for added currencies -->
+            <!-- dynamically create new divs for added assets -->
+            <script src="js/assets.js"></script>
 
             <div id="tabnav">
-                <script>
-                var tabnav = document.getElementById("tabnav");
-                for (i = 0; i < tabs.length; i++) {
-                    var b = document.createElement("BUTTON");
-                    var t = document.createTextNode(tabs[i]);
-                    b.appendChild(t);
-                    tabnav.appendChild(b);
-                }
-                </script>
-                <button id="addNewCrypto" class="tablinks" onclick="addNewCrypto()">+</button>
+                <script>refreshNavTabs()</script>
             </div> <!-- tabnav -->
         </div> <!-- container -->
     </body>

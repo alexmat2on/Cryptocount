@@ -5,7 +5,7 @@ var coins = ['bitcoin', 'ethereum', 'ripple', 'nem', 'maidsafecoin', 'gridcoin']
 // To support a new coin, simply add it to this array and place an image of its logo
 // in the img/ directory, as a png with the same name.
 
-var tabs = ['Overview'];
+var tabs = ['overview'];
 // An array of the tabs at the bottom of the screen. These represent only the
 // coins which you are holding.
 
@@ -43,13 +43,9 @@ function insertNewCrypto() {
     // Removes dropdown and checkbox button, then adds the crypto to tab-nav
     tabs.push(addNewSelector.value);
 
-    var newButton = document.createElement("BUTTON");
-    var newText = document.createTextNode(addNewSelector.value);
-    newButton.appendChild(newText);
-    newButton.setAttribute("class", "tablinks");
-
-    tabnav.insertBefore(newButton, document.getElementById("addNewCrypto"));
     newCryptoCleanUp();
+    updateAssetDivs();
+    refreshNavTabs();
 }
 
 function newCryptoCleanUp() {
@@ -59,4 +55,32 @@ function newCryptoCleanUp() {
     addNewSelector.remove(addNewSelector.selectedIndex);
 
     confirmCoinBtn.parentNode.removeChild(confirmCoinBtn);
+}
+
+function refreshNavTabs() {
+    // Update the navigation tabs at the bottom of the screen
+    var tabnav = document.getElementById("tabnav");
+    deleteNavTabs();
+
+    for (i = 0; i < tabs.length; i++) {
+        var newButton = document.createElement("BUTTON");
+        var currentTab = tabs[i];
+        newButton.setAttribute("class", "tablinks");
+
+        var newText = document.createTextNode(currentTab);
+        newButton.appendChild(newText);
+        tabnav.appendChild(newButton);
+    }
+    var newPlusButton = document.createElement("BUTTON");
+    newPlusButton.setAttribute("id", "plusButton");
+    newPlusButton.setAttribute("onclick", "addNewCrypto()");
+    newPlusButton.appendChild(document.createTextNode("+"));
+
+    tabnav.appendChild(newPlusButton);
+}
+
+function deleteNavTabs() {
+    while (tabnav.hasChildNodes()) {
+        tabnav.removeChild(tabnav.lastChild);
+    }
 }
