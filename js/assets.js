@@ -22,7 +22,7 @@ function updateAssetDivs() {
             var worth = document.createElement("P");
             worth.setAttribute("id", newAsset.id+"_worth");
 
-            // Add a form to input the current amount of assets you hold
+            // Add a form to add an amount of assets you've obtained
             var amountAddInput = document.createElement("INPUT");
             amountAddInput.setAttribute("id", newAsset.id+"_amountAddInput");
             amountAddInput.setAttribute("type","text");
@@ -32,6 +32,16 @@ function updateAssetDivs() {
             addAcceptBtn.appendChild(document.createTextNode("Add amount."));
             addAcceptBtn.setAttribute("onclick",addAcceptBtnAction);
 
+            // Add a form to remove an amount of assets you've obtained
+            var amountRemoveInput = document.createElement("INPUT");
+            amountRemoveInput.setAttribute("id", newAsset.id+"_amountRemoveInput");
+            amountRemoveInput.setAttribute("type", "text");
+
+            var removeAcceptBtn = document.createElement("BUTTON");
+            var removeAcceptBtnAction = "removeAmount(" + newAsset.id + ");";
+            removeAcceptBtn.appendChild(document.createTextNode("Remove amount."));
+            removeAcceptBtn.setAttribute("onclick",removeAcceptBtnAction);
+
             // Add all the elements to newAsset.
             newAsset.appendChild(header);
             newAsset.appendChild(price);
@@ -39,6 +49,9 @@ function updateAssetDivs() {
             newAsset.appendChild(worth);
             newAsset.appendChild(amountAddInput);
             newAsset.appendChild(addAcceptBtn);
+            newAsset.appendChild(document.createElement("BR"));
+            newAsset.appendChild(amountRemoveInput);
+            newAsset.appendChild(removeAcceptBtn);
 
             // Hide the new div, add it the array, and add it to the document
             newAsset.style.display = "none";
@@ -76,6 +89,20 @@ function addAmount(assetDiv) {
     // Add a new amount of an asset to the portfolio.
     var asset = assetDiv.id;
     var textAmount = document.getElementById(asset+"_amountAddInput").value;
+
+    var amountP = document.getElementById(asset+"_amount");
+    var worthP = document.getElementById(asset+"_worth");
+
+    amountP.innerHTML = "Amount: " + textAmount;
+    worthP.innerHTML = "Worth: $" + getUSD(asset)*textAmount;
+}
+
+function removeAmount(assetDiv) {
+    // Remove some amount of an asset from the portfolio.
+    var asset = assetDiv.id;
+    var textAddAmount = document.getElementById(asset+"_amountAddInput").value;
+    var textRemoveAmount = document.getElementById(asset+"_amountRemoveInput").value;
+    var textAmount = textAddAmount - textRemoveAmount;
 
     var amountP = document.getElementById(asset+"_amount");
     var worthP = document.getElementById(asset+"_worth");

@@ -28,7 +28,6 @@ var confirmCoinTxt = document.createTextNode("✓");
 confirmCoinBtn.appendChild(confirmCoinTxt);
 // -------------------------------------------------------------
 
-
 function addNewCrypto() {
     // Creates a new dropdown menu to select a new currency to track, as well
     // as a checkbox button to confirm your selection.
