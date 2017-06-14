@@ -43,13 +43,12 @@ function insertNewCrypto() {
     if (coinData) {
         // Ensure that coinData has data in it before adding an entry.
         tabs.push(addNewSelector.value);
+        updateAssetDivs();
+        newCryptoCleanUp();
+        refreshNavTabs();
     } else {
         alert("Something went wrong.");
     }
-
-    updateAssetDivs();
-    newCryptoCleanUp();
-    refreshNavTabs();
 }
 
 function newCryptoCleanUp() {
