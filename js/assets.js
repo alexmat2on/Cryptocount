@@ -1,6 +1,10 @@
 var assetDivs = [];
 
 function updateAssetDivs() {
+    getTotalWorth();
+    if (localStorage.totalWorth !== null) {
+        document.getElementById("totalWorth").innerHTML = localStorage.totalWorth;
+    }
     for (var i=0; i < tabs.length; i++) {
         if (!document.getElementById(tabs[i])) {
             var newAsset = document.createElement("DIV");
@@ -18,9 +22,11 @@ function updateAssetDivs() {
 
             var amount = document.createElement("P");
             amount.setAttribute("id", newAsset.id+"_amount");
+            amount.innerHTML = localStorage.getItem(newAsset.id+"_amount");
 
             var worth = document.createElement("P");
             worth.setAttribute("id", newAsset.id+"_worth");
+            worth.innerHTML = localStorage.getItem(newAsset.id+"_worth");
 
             // Add a form to add an amount of assets you've obtained
             var amountAddInput = document.createElement("INPUT");
@@ -66,6 +72,7 @@ function updateAssetDivs() {
 function openTab(evt, tabDiv) {
     // Select the specified Tab given by the argument.
     updateData(); // refresh current values every time a tab is clicked.
+    updateAssetDivs(); // Get new total worth every time a new tab is clicked.
     var i, tabcontent, tablinks;
 
     // Get all elements with class="tabcontent" and hide them
@@ -109,7 +116,7 @@ function removeAmount(assetDiv) {
     // Remove some amount of an asset from the portfolio.
     var asset = assetDiv.id;
     var removeAmount = document.getElementById(asset+"_amountRemoveInput");
-    
+
     var textAddAmount = localStorage.getItem(asset+"_amount");
     var textRemoveAmount = removeAmount.value;
     var textAmount = textAddAmount - textRemoveAmount;
@@ -124,4 +131,13 @@ function removeAmount(assetDiv) {
     worthP.innerHTML = "Worth: $" + localStorage.getItem(asset+"_worth");
 
     removeAmount.value = "";
+}
+
+function getTotalWorth() {
+    var total = 0;
+    for (var i=1; i < tabs.length; i++) {
+        total = +total + +localStorage.getItem(tabs[i]+"_worth");
+    }
+    localStorage.setItem("totalWorth", total);
+    return total;
 }

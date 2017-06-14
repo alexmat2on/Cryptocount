@@ -1,5 +1,8 @@
 var baseurl = "https://api.coinmarketcap.com/v1/ticker/";
 var coinData;
+if (localStorage.getItem("coinData") !== null) {
+    coinData = JSON.parse(localStorage.getItem("coinData"));
+}
 // Data about every coin on CoinMarketCap. updateData(); will refresh the values
 
 function updateData() {
@@ -7,6 +10,7 @@ function updateData() {
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             coinData = JSON.parse(this.responseText);
+            localStorage.setItem("coinData", this.responseText);
         }
     };
     xhttp.open("GET", baseurl, true);

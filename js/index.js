@@ -4,11 +4,17 @@ var coins = ['bitcoin', 'ethereum', 'ripple', 'nem', 'maidsafecoin', 'gridcoin']
 // in the img/ directory, as a png with the same name.
 
 var tabs = ['overview'];
+if (localStorage.getItem("tabs") !== null) {
+    tabs = localStorage.getItem("tabs").split(",");
+}
 // An array of the tabs at the bottom of the screen. These represent only the
 // coins which you are holding.
 
 // --- SELECTOR FOR NEW CRYPTOCURRENCIES TO ADD TO PORTFOLIO ---
 var addNewCoins = coins;
+if (localStorage.getItem("addCoins") !== null) {
+    addNewCoins = localStorage.getItem("addCoins").split(",");
+}
 var addNewSelector = document.createElement("SELECT");
 addNewSelector.setAttribute('id', 'addNewSelector');
 
@@ -42,11 +48,13 @@ function insertNewCrypto() {
     if (coinData) {
         // Ensure that coinData has data in it before adding an entry.
         tabs.push(addNewSelector.value);
+        localStorage.setItem("tabs",tabs);
+
         updateAssetDivs();
         newCryptoCleanUp();
         refreshNavTabs();
     } else {
-        alert("Something went wrong.");
+        alert("Could not connect to CoinMarketCap.com.\nPlease try again.");
     }
 }
 
@@ -55,6 +63,12 @@ function newCryptoCleanUp() {
     addNewSelector.remove(addNewSelector.selectedIndex);
     addNewSelector.parentNode.removeChild(addNewSelector);
     addNewSelector.selectedIndex = 0;
+
+    var addcoins = [];
+    for (var i = 0; i < addNewSelector.children.length; i++) {
+        addcoins.push(addNewSelector.children[i].innerHTML);
+    }
+    localStorage.setItem("addCoins", addcoins);
 
     confirmCoinBtn.parentNode.removeChild(confirmCoinBtn);
 }

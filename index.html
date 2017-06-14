@@ -3,7 +3,8 @@
         <meta charset="utf-8"/>
         <link rel="stylesheet" href="css/cryptocount_light.css">
         <script src="js/index.js"></script>
-        <script src="js/coindata.js"></script>
+        <script src="js/coindata.js">updateData()</script>
+        <script src="js/assets.js"></script>
     </head>
     <body>
         <div id="banner">
@@ -13,15 +14,17 @@
 
         <div id="container">
             <div id="overview" class="tabcontent">
-                <h2 id="totalWorth">[TOTAL WORTH PLACEHOLDER]</h2>
+                <h2 id="totalWorth"></h2>
                 <p id="btc"></p>
             </div>
 
             <!-- dynamically create new divs for added assets -->
-            <script src="js/assets.js"></script>
 
             <div id="tabnav">
-                <script>refreshNavTabs()</script>
+                <script>
+                refreshNavTabs();
+                updateAssetDivs();
+                </script>
             </div> <!-- tabnav -->
         </div> <!-- container -->
     </body>
