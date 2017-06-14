@@ -39,12 +39,12 @@ p {
     position:absolute;
     bottom:0;
     width:100%;
-    height:45px;   /* Height of the footer */
+    height:40px;   /* Height of the footer */
     background: #201324;
 }
 
 /* Style the tabs */
-#tabnav button {
+#tabnav .tablinks {
     background-color: #efa811;
     border: none;
     color: #201324;
@@ -54,8 +54,6 @@ p {
     display: inline-block;
     font-size: 16px;
     height: 100%;
-
-    border-radius: 5px;
 }
 
 /* Change background color of buttons on hover */
@@ -68,4 +66,15 @@ div#tabnav button:hover {
 #tabnav button.active {
     background-color: #201324;
     color: #fff;
+}
+
+#plusButton {
+    background-color: #15c627;
+    border: none;
+    padding: auto;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    height: 100%;
 }
