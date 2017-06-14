@@ -14,26 +14,28 @@ function updateAssetDivs() {
             header.appendChild(document.createTextNode(newAsset.id));
             newAsset.appendChild(header);
 
+            // Add a smaller header with the current value of the asset
             var price = document.createElement("H4");
             price.setAttribute("id", newAsset.id+"_price");
             price.appendChild(document.createTextNode(getUSD(newAsset.id)));
             newAsset.appendChild(price);
 
-            newAsset.style.display = "block";
-            assetDivs.push(document.createElement);
-
+            // Hide the new div, add it the array, and add it to the document
+            newAsset.style.display = "none";
+            console.log(assetDivs.push(newAsset));
             document.body.appendChild(newAsset);
         }
     }
 }
 
-function openCrypto(evt, crypt) {
-    // Declare all variables
+function openTab(evt, tabDiv) {
+    // Select the specified Tab given by the argument.
+
     var i, tabcontent, tablinks;
 
     // Get all elements with class="tabcontent" and hide them
     tabcontent = document.getElementsByClassName("tabcontent");
-    for (o = 0; i < tabcontent.length; i++) {
+    for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
     }
 
@@ -44,7 +46,6 @@ function openCrypto(evt, crypt) {
     }
 
     // Show the current tab, and add an "active" class to the button that opened the tab
-    console.log(crypt);
-    document.getElementById(crypt).style.display = "block";
+    tabDiv.style.display = "block";
     evt.currentTarget.className += " active";
 }

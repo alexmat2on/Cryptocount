@@ -40,8 +40,12 @@ function addNewCrypto() {
 function insertNewCrypto() {
     // Called by the confirm checkbox button.
     // Removes dropdown and checkbox button, then adds the crypto to tab-nav
-    tabs.push(addNewSelector.value);
-
+    if (coinData) {
+        // Ensure that coinData has data in it before adding an entry.
+        tabs.push(addNewSelector.value);
+    } else {
+        alert("Something went wrong.");
+    }
 
     updateAssetDivs();
     newCryptoCleanUp();
@@ -65,7 +69,9 @@ function refreshNavTabs() {
     for (var i = 0; i < tabs.length; i++) {
         var newButton = document.createElement("BUTTON");
         var currentTab = tabs[i];
+        var clickAction = "openTab(event," + currentTab + ")";
         newButton.setAttribute("class", "tablinks");
+        newButton.setAttribute("onclick", clickAction);
 
         var newText = document.createTextNode(currentTab);
         newButton.appendChild(newText);
