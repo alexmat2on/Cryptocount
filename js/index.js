@@ -54,9 +54,9 @@ function insertNewCrypto() {
 
 function newCryptoCleanUp() {
     // Clean up the dropdown and checkbox elements
+    addNewSelector.remove(addNewSelector.selectedIndex);
     addNewSelector.parentNode.removeChild(addNewSelector);
     addNewSelector.selectedIndex = 0;
-    addNewSelector.remove(addNewSelector.selectedIndex);
 
     confirmCoinBtn.parentNode.removeChild(confirmCoinBtn);
 }

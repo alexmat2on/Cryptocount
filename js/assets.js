@@ -1,7 +1,5 @@
 var assetDivs = [];
 
-updateAssetDivs();
-
 function updateAssetDivs() {
     for (var i=0; i < tabs.length; i++) {
         if (!document.getElementById(tabs[i])) {
@@ -22,15 +20,17 @@ function updateAssetDivs() {
 
             // Hide the new div, add it the array, and add it to the document
             newAsset.style.display = "none";
-            console.log(assetDivs.push(newAsset));
-            document.body.appendChild(newAsset);
+            assetDivs.push(newAsset);
+
+            var containerDiv = document.getElementById("container");
+            containerDiv.insertBefore(newAsset, tabnav);
         }
     }
 }
 
 function openTab(evt, tabDiv) {
     // Select the specified Tab given by the argument.
-
+    updateData(); // refresh current values every time a tab is clicked.
     var i, tabcontent, tablinks;
 
     // Get all elements with class="tabcontent" and hide them
