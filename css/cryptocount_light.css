@@ -12,7 +12,7 @@ html {
 
 body {
     padding: 0;
-    margin: 0;
+    margin: auto;
 }
 
 p {
@@ -31,10 +31,41 @@ p {
     height: 15px;
 }
 
+#container {
+    text-align: center;
+}
+
 #tabnav {
     position:absolute;
     bottom:0;
     width:100%;
     height:45px;   /* Height of the footer */
     background: #201324;
+}
+
+/* Style the tabs */
+#tabnav button {
+    background-color: #efa811;
+    border: none;
+    color: #201324;
+    padding: auto;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    height: 100%;
+
+    border-radius: 5px;
+}
+
+/* Change background color of buttons on hover */
+div#tabnav button:hover {
+    background-color: #f0f2f7;
+    color: #201324;
+}
+
+/* Create an active/current tablink class */
+#tabnav button.active {
+    background-color: #201324;
+    color: #fff;
 }

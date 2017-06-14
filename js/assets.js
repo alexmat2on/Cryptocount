@@ -64,7 +64,7 @@ function updateAssetDivs() {
             assetDivs.push(newAsset);
 
             var containerDiv = document.getElementById("container");
-            containerDiv.insertBefore(newAsset, tabnav);
+            containerDiv.appendChild(newAsset);
         }
     }
 }
