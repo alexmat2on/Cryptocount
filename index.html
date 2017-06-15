@@ -1,31 +1,34 @@
 <html lang="en">
-    <head>
-        <meta charset="utf-8"/>
-        <link rel="stylesheet" href="css/cryptocount_light.css">
-        <script src="js/index.js"></script>
-        <script src="js/coindata.js">updateData()</script>
-        <script src="js/assets.js"></script>
-    </head>
-    <body>
-        <div id="banner">
-            <h1>Cryptocount</h1>
+<head>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="css/cryptocount_light.css">
+</head>
+<body>
+    <div id="banner">
+        <h1>Cryptocount</h1>
+    </div>
+    <div id="banner2"></div>
+
+    <div id="container">
+        <div id="overview" class="tabcontent">
+            <h2 id="totalWorth"></h2>
+            <p id="btc"></p>
         </div>
-        <div id="banner2"></div>
 
-        <div id="container">
-            <div id="overview" class="tabcontent">
-                <h2 id="totalWorth"></h2>
-                <p id="btc"></p>
+        <!-- dynamically create new divs for added assets -->
+
+    </div> <!-- container -->
+    <div id="tabnav">
+        <div id="add-dropdown">
+            <div id="add-dropdown-content">
             </div>
-
-            <!-- dynamically create new divs for added assets -->
-
-        </div> <!-- container -->
-        <div id="tabnav">
-            <script>
-            refreshNavTabs();
-            updateAssetDivs();
-            </script>
-        </div> <!-- tabnav -->
-    </body>
+            <button class="add-dropbtn">+</button>
+        </div>
+    </div> <!-- tabnav -->
+</body>
 </html>
+
+<script src="js/index.js"></script>
+<script src="js/coindata.js"></script>
+<script src="js/assets.js"></script>
+<script src="js/navbar.js"></script>

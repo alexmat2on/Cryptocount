@@ -4,6 +4,7 @@ if (localStorage.getItem("coinData") !== null) {
     coinData = JSON.parse(localStorage.getItem("coinData"));
 }
 // Data about every coin on CoinMarketCap. updateData(); will refresh the values
+updateData();
 
 function updateData() {
     var xhttp = new XMLHttpRequest();
