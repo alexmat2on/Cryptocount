@@ -7,6 +7,7 @@ if (localStorage.getItem("tabs") !== null) {
 
 // --------- SELECTOR FOR NEW CRYPTOCURRENCIES TO ADD TO PORTFOLIO -------------
 var addDropdownSelector = document.getElementById("add-dropdown-content");
+var addDropdownSearch = document.getElementById("coin-search");
 var addNewCoins = coins;
 if (localStorage.getItem("addCoins") !== null) {
     addNewCoins = localStorage.getItem("addCoins").split(",");
@@ -15,28 +16,59 @@ if (localStorage.getItem("addCoins") !== null) {
 for (var i=0; i < addNewCoins.length; i++) {
     var button = document.createElement("button");
     var buttonAction = "addToPortfolio('" + addNewCoins[i] + "');";
+
     button.setAttribute("onclick", buttonAction);
+    button.setAttribute("class", "dropdown-option");
+
     button.innerHTML = addNewCoins[i];
     addDropdownSelector.appendChild(button);
 };
 // =============================================================================
 
 refreshEverything();
-document.getElementById("overview_btn").click();    // Select overview
+document.getElementById("overview_btn").click();    // Select overview when page loads
+
+function filterDropdown() {
+    var coinSearch = document.getElementById("coin-search");
+    var searchString = coinSearch.value;
+
+    var items = document.getElementsByClassName("dropdown-option");
+    var itemsArr = Array.prototype.slice.call(items);
+
+    for (var i = 0; i < itemsArr.length; i++) {
+        itemsArr[i].style.display = "none";
+    }
+
+    for (var i = 0; i < itemsArr.length; i++) {
+        var currentItem = itemsArr[i].innerHTML;
+
+        if (currentItem.indexOf(searchString) == 0) {
+            itemsArr[i].style.display = "block";
+        }
+    }
+}
 
 function addToPortfolio(coinName) {
     // Add coinName to the portfolio.
+
+    // re-add everything to the dropdown that the search cleared out.
+    for (var i = 0; i < addDropdownSelector.length; i++) {
+        addDropdownSelector[i].style.display = "block";
+    }
+
     updateData();
     if (coinData) {
         // Ensure that coinData has data in it before adding an entry.
         tabs.push(coinName);    // Create a new tab for it at the bottom
         localStorage.setItem("tabs",tabs);
 
-        // Remove the entry from the dropdown menu
+        // Remove the entry from the dropdown menu.
         for (var i = 0; i < addNewCoins.length; i++) {
             if (addNewCoins[i] == coinName) {
                 addNewCoins.splice(i,1);
-                addDropdownSelector.removeChild(addDropdownSelector.children[i]);
+                
+                // remove the i+1 child because the search bar is #1
+                addDropdownSelector.removeChild(addDropdownSelector.children[i+1]);
             }
         }
         localStorage.setItem("addCoins", addNewCoins);

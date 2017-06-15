@@ -135,6 +135,12 @@ div#tabnav button:hover {
     font-size: 15px;
     padding: 10px;
 }
+
+#add-dropdown-content input[type=text] {
+    width: 100%;
+    height: 30px;
+    border: none;
+}
 /* Change color of dropdown links on hover */
 #add-dropdown-content a:hover {background-color: #f1f1f1}
 

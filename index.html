@@ -11,8 +11,12 @@
     <div id="tabnav">
         <div id="add-dropdown">
             <div id="add-dropdown-content">
+                 <input id="coin-search" type="text" name="search"
+                 onkeyup="filterDropdown();" placeholder="Search...">
             </div>
-            <button class="add-dropbtn"><i class="material-icons">add_circle_outline</i></button>
+            <button class="add-dropbtn">
+                <i class="material-icons">add_circle_outline</i>
+            </button>
         </div>
     </div> <!-- tabnav -->
     <div id="banner2"></div>
@@ -28,8 +32,12 @@
     <div id="banner">
         <h1>Cryptocount</h1>
         <div id="icons">
-            <button onclick="refreshEverything();"><i class="material-icons">refresh</i></button>
-            <button onclick=""><i class="material-icons">settings</i></button>
+            <button onclick="refreshEverything();">
+                <i class="material-icons">refresh</i>
+            </button>
+            <button onclick="">
+                <i class="material-icons">settings</i>
+            </button>
         </div>
     </div>
 </body>
