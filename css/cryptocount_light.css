@@ -22,7 +22,7 @@ p {
 
 #banner {
     background-color: #d62c19;
-    height: 75px;
+    height: 55px;
     justify-content: center;
     align-items: center;
     align-content: center;
@@ -141,7 +141,7 @@ div#tabnav button:hover {
 /* Show the dropdown menu on hover */
 #add-dropdown:hover #add-dropdown-content {
     display: block;
-    top: 75px;
+    top: 45px;
 }
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
