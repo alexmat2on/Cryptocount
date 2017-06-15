@@ -21,8 +21,7 @@ for (var i=0; i < addNewCoins.length; i++) {
 };
 // =============================================================================
 
-refreshNavTabs();   // Refresh the nav tabs so Overview appears
-updateOverview();
+refreshEverything();
 document.getElementById("overview_btn").click();    // Select overview
 
 function addToPortfolio(coinName) {
@@ -72,4 +71,12 @@ function refreshNavTabs() {
         newButton.appendChild(newText);
         tabnav.appendChild(newButton);
     }
+}
+
+function refreshEverything() {
+    updateData();
+    refreshNavTabs();
+    getTotalWorth();
+    updateAssetDivs();
+    updateOverview();
 }

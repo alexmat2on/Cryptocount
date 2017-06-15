@@ -1,8 +1,6 @@
 var assetDivs = [];
 
 function updateAssetDivs() {
-    getTotalWorth();
-    updateOverview();
     if (localStorage.totalWorth !== null) {
         document.getElementById("totalWorth").innerHTML = "$" + localStorage.totalWorth;
     }
@@ -72,8 +70,8 @@ function updateAssetDivs() {
 
 function openTab(evt, tabDiv) {
     // Select the specified Tab given by the argument.
-    updateData(); // refresh current values every time a tab is clicked.
-    updateAssetDivs(); // Get new total worth every time a new tab is clicked.
+
+    refreshEverything();
     var i, tabcontent, tablinks;
 
     // Get all elements with class="tabcontent" and hide them
@@ -146,8 +144,6 @@ function getTotalWorth() {
 function updateOverview() {
     for (var i=1; i < tabs.length; i++) {
         var newP = document.getElementById(getTicker(tabs[i])+"_overview");
-        console.log(getTicker(tabs[i])+"_overview");
-        console.log(newP);
         if (newP == null) {
             newP = document.createElement("P");
             newP.setAttribute("id", getTicker(tabs[i])+"_overview");
