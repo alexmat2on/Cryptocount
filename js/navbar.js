@@ -1,4 +1,16 @@
+var tabs = ['overview'];
+if (localStorage.getItem("tabs") !== null) {
+    tabs = localStorage.getItem("tabs").split(",");
+}
+// An array of the tabs at the bottom of the screen. These represent only the
+// coins which you are holding.
+
+// --------- SELECTOR FOR NEW CRYPTOCURRENCIES TO ADD TO PORTFOLIO -------------
 var addDropdownSelector = document.getElementById("add-dropdown-content");
+var addNewCoins = coins;
+if (localStorage.getItem("addCoins") !== null) {
+    addNewCoins = localStorage.getItem("addCoins").split(",");
+}
 
 for (var i=0; i < addNewCoins.length; i++) {
     var button = document.createElement("button");
@@ -7,9 +19,10 @@ for (var i=0; i < addNewCoins.length; i++) {
     button.innerHTML = addNewCoins[i];
     addDropdownSelector.appendChild(button);
 };
+// =============================================================================
 
-refreshNavTabs();
-document.getElementById("overview_btn").click();
+refreshNavTabs();   // Refresh the nav tabs so Overview appears
+document.getElementById("overview_btn").click();    // Select overview
 
 function addToPortfolio(coinName) {
     updateData();

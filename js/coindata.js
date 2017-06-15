@@ -1,4 +1,11 @@
+var coins = ['bitcoin', 'ethereum', 'ripple', 'nem', 'maidsafecoin', 'gridcoin'];
+// An array of currently supported coins to choose from.
+// To support a new coin, simply add it to this array and place an image of its logo
+// in the img/ directory, as a png with the same name.
+
 var baseurl = "https://api.coinmarketcap.com/v1/ticker/";
+// The CoinMarkCap API
+
 var coinData;
 if (localStorage.getItem("coinData") !== null) {
     coinData = JSON.parse(localStorage.getItem("coinData"));

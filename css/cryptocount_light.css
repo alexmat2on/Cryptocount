@@ -1,4 +1,6 @@
-/* red:         #d62c19
+/* COLOR SCHEME
+ * --------------------
+ * red:         #d62c19
  * orange:      #efa811
  * light-grey:  #f0f2f7
  * dark:        #201324
@@ -77,9 +79,8 @@ div#tabnav button:hover {
     display: inline-block;
     font-size: 16px;
     height: 100%;
+    width: auto;
 }
-
-
 
 /* ------------------------- */
 .add-dropbtn {
@@ -135,14 +136,4 @@ div#tabnav button:hover {
 /* Change the background color of the dropdown button when the dropdown content is shown */
 #add-dropdown:hover .add-dropbtn {
     background-color: #3e8e41;
-}
-
-select {
-    width: 100%;
-    padding: 10px;
-    overflow-y: auto
-}
-
-option {
-    padding: 10px;
 }
