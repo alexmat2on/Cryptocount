@@ -3,11 +3,15 @@
     <meta charset="utf-8"/>
     <link rel="stylesheet" href="css/cryptocount_light.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-        rel="stylesheet">
+    rel="stylesheet">
 </head>
 <body>
     <div id="banner">
         <h1>Cryptocount</h1>
+        <div id="icons">
+            <button onclick="updateData();"><i class="material-icons">refresh</i></button>
+            <button onclick=""><i class="material-icons">settings</i></button>
+        </div>
     </div>
     <div id="banner2"></div>
 
@@ -24,9 +28,7 @@
         <div id="add-dropdown">
             <div id="add-dropdown-content">
             </div>
-            <button class="add-dropbtn">
-                <i class="material-icons md-14">add_circle</i>
-            </button>
+            <button class="add-dropbtn">+</button>
         </div>
     </div> <!-- tabnav -->
 </body>

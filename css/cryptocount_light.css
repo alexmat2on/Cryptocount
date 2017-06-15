@@ -9,7 +9,6 @@
 html {
     background-color: #f0f2f7;
     color: #201324;
-    margin-top: -22px;
 }
 
 body {
@@ -24,8 +23,28 @@ p {
 #banner {
     background-color: #d62c19;
     height: 75px;
-    text-align: center;
-    padding: 1em;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    padding: 0px;
+    padding-left: 30px;
+    padding-right: 30px;
+    display: flex;
+    flex-direction: row;
+}
+
+#banner h1 {
+    flex-grow: 1;
+}
+
+#banner#icons {
+    flex-grow: 2;
+    margin: 10px;
+}
+
+#banner button {
+    background-color: #d62c19;
+    border: none;
 }
 
 #banner2 {
@@ -38,7 +57,8 @@ p {
 }
 
 #tabnav {
-    position:absolute;
+    position: absolute;
+    display: flex;
     bottom:0;
     width:100%;
     height: 45px;   /* Height of the footer */
@@ -94,7 +114,8 @@ div#tabnav button:hover {
 /* The container <div> - needed to position the dropdown content */
 #add-dropdown {
     position: relative;
-    display: inline-block;
+    display: ;
+    width: auto;
 }
 
 /* Dropdown Content (Hidden by Default) */
@@ -130,4 +151,4 @@ div#tabnav button:hover {
     background-color: #3e8e41;
 }
 
-.material-icons.md-14 { font-size: 14px; }
+.material-icons.md-12 { font-size: 12px; }
