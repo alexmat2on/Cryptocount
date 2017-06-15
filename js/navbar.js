@@ -22,6 +22,7 @@ for (var i=0; i < addNewCoins.length; i++) {
 // =============================================================================
 
 refreshNavTabs();   // Refresh the nav tabs so Overview appears
+updateOverview();
 document.getElementById("overview_btn").click();    // Select overview
 
 function addToPortfolio(coinName) {
@@ -58,7 +59,7 @@ function refreshNavTabs() {
     var tablinks = document.getElementsByClassName("tablinks");
 
     // Start at how many elements exist in the tabmenu so that we avoid
-    // adding duplicate tabs. 
+    // adding duplicate tabs.
     for (var i = tablinks.length; i < tabs.length; i++) {
         var newButton = document.createElement("BUTTON");
         var currentTab = tabs[i];

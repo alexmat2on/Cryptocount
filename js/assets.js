@@ -2,8 +2,9 @@ var assetDivs = [];
 
 function updateAssetDivs() {
     getTotalWorth();
+    updateOverview();
     if (localStorage.totalWorth !== null) {
-        document.getElementById("totalWorth").innerHTML = localStorage.totalWorth;
+        document.getElementById("totalWorth").innerHTML = "$" + localStorage.totalWorth;
     }
     for (var i=0; i < tabs.length; i++) {
         if (!document.getElementById(tabs[i])) {
@@ -140,4 +141,19 @@ function getTotalWorth() {
     }
     localStorage.setItem("totalWorth", total);
     return total;
+}
+
+function updateOverview() {
+    for (var i=1; i < tabs.length; i++) {
+        var newP = document.getElementById(getTicker(tabs[i])+"_overview");
+        console.log(getTicker(tabs[i])+"_overview");
+        console.log(newP);
+        if (newP == null) {
+            newP = document.createElement("P");
+            newP.setAttribute("id", getTicker(tabs[i])+"_overview");
+            newP.setAttribute("style", "font-size: 28px");
+            document.getElementById("overview").appendChild(newP);
+        }
+        newP.innerHTML = getTicker(tabs[i]) + ": $" + localStorage.getItem(tabs[i]+"_worth");
+    }
 }

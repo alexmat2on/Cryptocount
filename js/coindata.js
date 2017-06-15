@@ -33,3 +33,11 @@ function getUSD(coinName) {
         }
     }
 }
+
+function getTicker(coinName) {
+    for (var i = 0; i < coinData.length; i++) {
+        if (coinData[i].id == coinName || coinData[i].name == coinName) {
+            return coinData[i].symbol;
+            break;
+        }
+    }}
