@@ -25,12 +25,14 @@ refreshNavTabs();   // Refresh the nav tabs so Overview appears
 document.getElementById("overview_btn").click();    // Select overview
 
 function addToPortfolio(coinName) {
+    // Add coinName to the portfolio.
     updateData();
     if (coinData) {
         // Ensure that coinData has data in it before adding an entry.
-        tabs.push(coinName);
+        tabs.push(coinName);    // Create a new tab for it at the bottom
         localStorage.setItem("tabs",tabs);
 
+        // Remove the entry from the dropdown menu
         for (var i = 0; i < addNewCoins.length; i++) {
             if (addNewCoins[i] == coinName) {
                 addNewCoins.splice(i,1);
@@ -39,9 +41,11 @@ function addToPortfolio(coinName) {
         }
         localStorage.setItem("addCoins", addNewCoins);
 
+        // Update the views
         updateAssetDivs();
         refreshNavTabs();
 
+        // Select the newly added asset
         document.getElementById(coinName+"_btn").click();
     } else {
         alert("Could not connect to CoinMarketCap.com.\nPlease try again.");
@@ -53,6 +57,8 @@ function refreshNavTabs() {
     var tabnav = document.getElementById("tabnav");
     var tablinks = document.getElementsByClassName("tablinks");
 
+    // Start at how many elements exist in the tabmenu so that we avoid
+    // adding duplicate tabs. 
     for (var i = tablinks.length; i < tabs.length; i++) {
         var newButton = document.createElement("BUTTON");
         var currentTab = tabs[i];
