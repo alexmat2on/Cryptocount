@@ -16,3 +16,4 @@ allow you to import/export app data, clear app data, and perhaps change themes
 * Add many, many more cryptocurrency options
 * Make the tab pages more detailed; I plan on making it possible for users to
 input individual Buy/Sell transactions and list them all in a table on each asset's page.
+* Add data visualizations with ChartJS on the Overview page.
