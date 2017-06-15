@@ -26,11 +26,11 @@ p {
     justify-content: center;
     align-items: center;
     align-content: center;
-    padding: 0px;
-    padding-left: 30px;
-    padding-right: 30px;
     display: flex;
     flex-direction: row;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 
 #banner h1 {
@@ -57,9 +57,7 @@ p {
 }
 
 #tabnav {
-    position: absolute;
     display: flex;
-    bottom:0;
     width:100%;
     height: 45px;   /* Height of the footer */
     background: #201324;
@@ -67,9 +65,9 @@ p {
 
 /* Style the tabs */
 #tabnav .tablinks {
-    background-color: #efa811;
+    background-color: #201324;
     border: none;
-    color: #201324;
+    color: #fff;
     padding: auto;
     text-align: center;
     text-decoration: none;
@@ -86,8 +84,8 @@ div#tabnav button:hover {
 
 /* Create an active/current tablink class */
 #tabnav button.active {
-    background-color: #201324;
-    color: #fff;
+    background-color: #efa811;
+    color: #201324;
 }
 
 #plusButton {
@@ -114,7 +112,7 @@ div#tabnav button:hover {
 /* The container <div> - needed to position the dropdown content */
 #add-dropdown {
     position: relative;
-    display: ;
+    display: inline-block;
     width: auto;
 }
 
@@ -143,7 +141,7 @@ div#tabnav button:hover {
 /* Show the dropdown menu on hover */
 #add-dropdown:hover #add-dropdown-content {
     display: block;
-    bottom: 100%;
+    top: 75px;
 }
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
