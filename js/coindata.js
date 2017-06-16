@@ -1,4 +1,5 @@
-var coins = ['bitcoin', 'ethereum', 'ripple', 'nem', 'maidsafecoin', 'gridcoin'];
+//var coins = ['bitcoin', 'ethereum', 'ripple', 'nem', 'maidsafecoin', 'gridcoin'];
+var coins = [];
 // An array of currently supported coins to choose from.
 // To support a new coin, simply add it to this array and place an image of its logo
 // in the img/ directory, as a png with the same name.
@@ -17,6 +18,12 @@ function updateData() {
         if (this.readyState == 4 && this.status == 200) {
             coinData = JSON.parse(this.responseText);
             localStorage.setItem("coinData", this.responseText);
+
+            if (coins.length == 0) {    // Prevent the dropdown from repeating
+                for (var i = 0; i < coinData.length; i++) {
+                    coins.push(coinData[i].id);
+                }
+            }
         }
     };
     xhttp.open("GET", baseurl, true);
@@ -38,4 +45,7 @@ function getTicker(coinName) {
             return coinData[i].symbol;
             break;
         }
-    }}
+    }
+}
+
+updateData();

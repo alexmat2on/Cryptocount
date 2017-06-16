@@ -13,16 +13,21 @@ if (localStorage.getItem("addCoins") !== null) {
     addNewCoins = localStorage.getItem("addCoins").split(",");
 }
 
-for (var i=0; i < addNewCoins.length; i++) {
-    var button = document.createElement("button");
-    var buttonAction = "addToPortfolio('" + addNewCoins[i] + "');";
+updateData();
+refreshDropdown();
 
-    button.setAttribute("onclick", buttonAction);
-    button.setAttribute("class", "dropdown-option");
+function refreshDropdown() {
+    for (var i=0; i < addNewCoins.length; i++) {
+        var button = document.createElement("button");
+        var buttonAction = "addToPortfolio('" + addNewCoins[i] + "');";
 
-    button.innerHTML = addNewCoins[i];
-    addDropdownSelector.appendChild(button);
-};
+        button.setAttribute("onclick", buttonAction);
+        button.setAttribute("class", "dropdown-option");
+
+        button.innerHTML = addNewCoins[i];
+        addDropdownSelector.appendChild(button);
+    };
+}
 // =============================================================================
 
 refreshEverything();
@@ -56,21 +61,19 @@ function addToPortfolio(coinName) {
         addDropdownSelector[i].style.display = "block";
     }
 
+    // check to see if tab is already open
+    var tabExists = false;
+    for (var i = 0; i < tabs.length; i++) {
+        if (tabs[i] == coinName) {
+            tabExists = true;
+        }
+    }
+
     updateData();
-    if (coinData) {
+    if (coinData && !tabExists) {
         // Ensure that coinData has data in it before adding an entry.
         tabs.push(coinName);    // Create a new tab for it at the bottom
         localStorage.setItem("tabs",tabs);
-
-        // Remove the entry from the dropdown menu.
-        for (var i = 0; i < addNewCoins.length; i++) {
-            if (addNewCoins[i] == coinName) {
-                addNewCoins.splice(i,1);
-                
-                // remove the i+1 child because the search bar is #1
-                addDropdownSelector.removeChild(addDropdownSelector.children[i+1]);
-            }
-        }
         localStorage.setItem("addCoins", addNewCoins);
 
         // Update the views
@@ -79,8 +82,6 @@ function addToPortfolio(coinName) {
 
         // Select the newly added asset
         document.getElementById(coinName+"_btn").click();
-    } else {
-        alert("Could not connect to CoinMarketCap.com.\nPlease try again.");
     }
 }
 
@@ -108,6 +109,7 @@ function refreshNavTabs() {
 function refreshEverything() {
     updateData();
     refreshNavTabs();
+    refreshDropdown();
     getTotalWorth();
     updateAssetDivs();
     updateOverview();
