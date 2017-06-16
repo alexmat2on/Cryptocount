@@ -1,5 +1,8 @@
 //var coins = ['bitcoin', 'ethereum', 'ripple', 'nem', 'maidsafecoin', 'gridcoin'];
 var coins = [];
+if (localStorage.getItem("coins") !== null) {
+    coins = localStorage.getItem("coins").split(",");
+}
 // An array of currently supported coins to choose from.
 // To support a new coin, simply add it to this array and place an image of its logo
 // in the img/ directory, as a png with the same name.
@@ -23,6 +26,7 @@ function updateData() {
                 for (var i = 0; i < coinData.length; i++) {
                     coins.push(coinData[i].id);
                 }
+                localStorage.setItem("coins", coins);
             }
         }
     };
