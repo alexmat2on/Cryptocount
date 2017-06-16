@@ -1,7 +1,12 @@
 var settingsDiv = document.getElementById("settings");
 
-function openSettings() {
-
+function toggleSettings() {
+    if (settingsDiv.style.display != "none") {
+        settingsDiv.style.display = "none";
+    }
+    else {
+        settingsDiv.style.display = "block";
+    }
 }
 
 function resetData() {

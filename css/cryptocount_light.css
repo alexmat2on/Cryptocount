@@ -157,3 +157,16 @@ div#tabnav button:hover {
 }
 
 .material-icons.md-12 { font-size: 12px; }
+
+#settings {
+    display: none;
+    margin-left: 75%;
+    width: 25%;
+    height: calc(100% - 55px);
+    position: absolute;
+    z-index: 1;
+    bottom: 55px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    background-color: #f9f9f9;
+    text-align: center;
+}
