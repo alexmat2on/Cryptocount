@@ -8,25 +8,23 @@ if (localStorage.getItem("tabs") !== null) {
 // --------- SELECTOR FOR NEW CRYPTOCURRENCIES TO ADD TO PORTFOLIO -------------
 var addDropdownSelector = document.getElementById("add-dropdown-content");
 var addDropdownSearch = document.getElementById("coin-search");
-var addNewCoins = coins;
-if (localStorage.getItem("addCoins") !== null) {
-    addNewCoins = localStorage.getItem("addCoins").split(",");
-}
 
 updateData();
 refreshDropdown();
 
 function refreshDropdown() {
-    for (var i=0; i < addNewCoins.length; i++) {
-        var button = document.createElement("button");
-        var buttonAction = "addToPortfolio('" + addNewCoins[i] + "');";
+    if (addDropdownSelector.children.length == 1) {
+        for (var i=0; i < coins.length; i++) {
+            var button = document.createElement("button");
+            var buttonAction = "addToPortfolio('" + coins[i] + "');";
 
-        button.setAttribute("onclick", buttonAction);
-        button.setAttribute("class", "dropdown-option");
+            button.setAttribute("onclick", buttonAction);
+            button.setAttribute("class", "dropdown-option");
 
-        button.innerHTML = addNewCoins[i];
-        addDropdownSelector.appendChild(button);
-    };
+            button.innerHTML = coins[i];
+            addDropdownSelector.appendChild(button);
+        };
+    }
 }
 // =============================================================================
 
@@ -74,7 +72,6 @@ function addToPortfolio(coinName) {
         // Ensure that coinData has data in it before adding an entry.
         tabs.push(coinName);    // Create a new tab for it at the bottom
         localStorage.setItem("tabs",tabs);
-        localStorage.setItem("addCoins", addNewCoins);
 
         // Update the views
         updateAssetDivs();
