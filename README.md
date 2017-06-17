@@ -17,6 +17,7 @@ be expected!
 * No registration required
 * Entirely static; can run anywhere
 * Supports every cryptocurrency on CoinMarketCap
+* Simple and smooth UI/UX
 * Clear overview page showing a summary of your assets
 * Tab navigation to view details about individual assets
 * Tabs will show the asset's logo if I've added the image in the project files, and
