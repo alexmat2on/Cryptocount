@@ -17,6 +17,7 @@ function refreshDropdown() {
         for (var i=0; i < coins.length; i++) {
             var button = document.createElement("button");
             var buttonAction = "addToPortfolio('" + coins[i] + "');";
+            console.log(buttonAction);
 
             button.setAttribute("onclick", buttonAction);
             button.setAttribute("class", "dropdown-option");
@@ -53,6 +54,7 @@ function filterDropdown() {
 
 function addToPortfolio(coinName) {
     // Add coinName to the portfolio.
+    console.log(coinName);
 
     // re-add everything to the dropdown that the search cleared out.
     for (var i = 0; i < addDropdownSelector.length; i++) {
@@ -78,6 +80,7 @@ function addToPortfolio(coinName) {
         refreshNavTabs();
 
         // Select the newly added asset
+        console.log(coinName+"_btn");
         document.getElementById(coinName+"_btn").click();
     }
 }
@@ -92,7 +95,7 @@ function refreshNavTabs() {
     for (var i = tablinks.length; i < tabs.length; i++) {
         var newButton = document.createElement("BUTTON");
         var currentTab = tabs[i];
-        var clickAction = "openTab(event," + currentTab + ")";
+        var clickAction = "openTab(event,'" + currentTab + "')";
         newButton.setAttribute("class", "tablinks");
         newButton.setAttribute("id", currentTab+"_btn");
         newButton.setAttribute("onclick", clickAction);
