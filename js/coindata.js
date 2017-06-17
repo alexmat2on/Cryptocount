@@ -1,4 +1,3 @@
-//var coins = ['bitcoin', 'ethereum', 'ripple', 'nem', 'maidsafecoin', 'gridcoin'];
 var coins = [];
 if (localStorage.getItem("coins") !== null) {
     coins = localStorage.getItem("coins").split(",");
@@ -47,6 +46,15 @@ function getTicker(coinName) {
     for (var i = 0; i < coinData.length; i++) {
         if (coinData[i].id == coinName || coinData[i].name == coinName) {
             return coinData[i].symbol;
+            break;
+        }
+    }
+}
+
+function getFullName(coinName) {
+    for (var i = 0; i < coinData.length; i++) {
+        if (coinData[i].id == coinName || coinData[i].name == coinName) {
+            return coinData[i].name;
             break;
         }
     }

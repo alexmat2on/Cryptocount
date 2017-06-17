@@ -17,7 +17,6 @@ function refreshDropdown() {
         for (var i=0; i < coins.length; i++) {
             var button = document.createElement("button");
             var buttonAction = "addToPortfolio('" + coins[i] + "');";
-            console.log(buttonAction);
 
             button.setAttribute("onclick", buttonAction);
             button.setAttribute("class", "dropdown-option");
@@ -54,7 +53,6 @@ function filterDropdown() {
 
 function addToPortfolio(coinName) {
     // Add coinName to the portfolio.
-    console.log(coinName);
 
     // re-add everything to the dropdown that the search cleared out.
     for (var i = 0; i < addDropdownSelector.length; i++) {
@@ -80,7 +78,6 @@ function addToPortfolio(coinName) {
         refreshNavTabs();
 
         // Select the newly added asset
-        console.log(coinName+"_btn");
         document.getElementById(coinName+"_btn").click();
     }
 }
@@ -101,9 +98,54 @@ function refreshNavTabs() {
         newButton.setAttribute("onclick", clickAction);
 
         var newText = document.createTextNode(currentTab);
-        newButton.appendChild(newText);
+        var newIcon = document.createElement("IMG");
+        var imgPath = "img/" + currentTab + ".png";
+
+        if (imageExists(imgPath)) {
+            newIcon.src = "img/" + currentTab + ".png";
+            newIcon.setAttribute("height", "30px");
+            newButton.appendChild(newIcon);
+        } else {
+            newButton.appendChild(newText);
+
+        }
+
         tabnav.appendChild(newButton);
     }
+}
+
+function deleteTab(tabName) {
+    if (confirm("Delete this asset from your portfolio?\nAll data for this asset will be lost.")) {
+        for (var i = 0; i < tabs.length; i++) {
+            if (tabs[i] == tabName) {
+                tabs.splice(i,1);
+                localStorage.setItem("tabs", tabs);
+
+                var button = document.getElementById(tabName+"_btn");
+                button.parentNode.removeChild(button);
+
+                var overview = document.getElementById(getTicker(tabName)+"_overview");
+                overview.parentNode.removeChild(overview);
+            }
+        }
+        refreshEverything();
+        document.getElementById("overview_btn").click();
+    }
+}
+
+function imageExists(url){
+    var image = new Image();
+
+    image.src = url;
+
+    if (!image.complete) {
+        return false;
+    }
+    else if (image.height === 0) {
+        return false;
+    }
+
+    return true;
 }
 
 function refreshEverything() {

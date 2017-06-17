@@ -12,7 +12,13 @@ function updateAssetDivs() {
 
             // Add a header with the name of asset on top
             var header = document.createElement("H2");
-            header.appendChild(document.createTextNode(newAsset.id));
+            header.appendChild(document.createTextNode(getFullName(newAsset.id)));
+
+            // Add a button to exit/remove the asset from the portfolio
+            var deleteButton = document.createElement("BUTTON");
+            deleteButton.appendChild(document.createTextNode("X"));
+            deleteButton.setAttribute("class", "del-button");
+            deleteButton.setAttribute("onclick", "deleteTab('" + newAsset.id + "');");
 
             // Add a smaller header with the current value of the asset
             var price = document.createElement("H4");
@@ -48,6 +54,7 @@ function updateAssetDivs() {
             removeAcceptBtn.setAttribute("onclick",removeAcceptBtnAction);
 
             // Add all the elements to newAsset.
+            newAsset.appendChild(deleteButton);
             newAsset.appendChild(header);
             newAsset.appendChild(price);
             newAsset.appendChild(amount);
@@ -68,33 +75,8 @@ function updateAssetDivs() {
     }
 }
 
-// function openTab(evt, tabDiv) {
-//     // Select the specified Tab given by the argument.
-//     console.log(tabDiv);
-//
-//     refreshEverything();
-//     var i, tabcontent, tablinks;
-//
-//     // Get all elements with class="tabcontent" and hide them
-//     tabcontent = document.getElementsByClassName("tabcontent");
-//     for (i = 0; i < tabcontent.length; i++) {
-//         tabcontent[i].style.display = "none";
-//     }
-//
-//     // Get all elements with class="tablinks" and remove the class "active"
-//     tablinks = document.getElementsByClassName("tablinks");
-//     for (i = 0; i < tablinks.length; i++) {
-//         tablinks[i].className = tablinks[i].className.replace(" active", "");
-//     }
-//
-//     // Show the current tab, and add an "active" class to the button that opened the tab
-//     tabDiv.style.display = "block";
-//     evt.currentTarget.className += " active";
-// }
-
 function openTab(evt, tabName) {
     // Select the specified Tab given by the argument.
-    console.log(tabName);
 
     refreshEverything();
     var i, tabcontent, tablinks;
