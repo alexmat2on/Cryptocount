@@ -103,7 +103,7 @@ function refreshNavTabs() {
 
         if (imageExists(imgPath)) {
             newIcon.src = imgPath;
-            newIcon.setAttribute("height", "40px");
+            newIcon.setAttribute("height", "38px");
             newButton.appendChild(newIcon);
         } else {
             newButton.appendChild(newText);
