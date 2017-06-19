@@ -99,11 +99,11 @@ function refreshNavTabs() {
 
         var newText = document.createTextNode(currentTab);
         var newIcon = document.createElement("IMG");
-        var imgPath = "img/" + currentTab + ".png";
+        var imgPath = "img/" + currentTab + ".svg";
 
         if (imageExists(imgPath)) {
-            newIcon.src = "img/" + currentTab + ".png";
-            newIcon.setAttribute("height", "30px");
+            newIcon.src = imgPath;
+            newIcon.setAttribute("height", "40px");
             newButton.appendChild(newIcon);
         } else {
             newButton.appendChild(newText);
