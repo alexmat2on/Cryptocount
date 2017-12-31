@@ -38,8 +38,3 @@ and perhaps change themes (if I write alternative themes).
     input individual Buy/Sell transactions and list them all in a table on each asset's page.
 * Add data visualizations with ChartJS on the Overview page.
 * Allow the creation of multiple portfolios.
-
-## Known Issues & Quick Fixes
-* If the dropdown menu is empty, keep hitting the refresh button until it populates.
-    This should only ever happen on the first run or if you've erased all data in
-    Settings.
