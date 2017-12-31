@@ -77,6 +77,9 @@ function addToPortfolio(coinName) {
         updateAssetDivs();
         refreshNavTabs();
 
+        localStorage.setItem(coinName+"_amount", "0");
+        localStorage.setItem(coinName+"_worth", "0");
+
         // Select the newly added asset
         document.getElementById(coinName+"_btn").click();
     }
@@ -99,16 +102,14 @@ function refreshNavTabs() {
 
         var newText = document.createTextNode(currentTab);
         var newIcon = document.createElement("IMG");
+        newIcon.id = currentTab+"_ico";
+
         var imgPath = "img/" + currentTab + ".svg";
 
-        if (imageExists(imgPath)) {
-            newIcon.src = imgPath;
-            newIcon.setAttribute("height", "38px");
-            newButton.appendChild(newIcon);
-        } else {
-            newButton.appendChild(newText);
-
-        }
+        loadImage(newIcon, imgPath);
+        newIcon.setAttribute("height", "38px");
+        newButton.appendChild(newIcon);
+        newButton.appendChild(newText);
 
         tabnav.appendChild(newButton);
     }
@@ -133,19 +134,18 @@ function deleteTab(tabName) {
     }
 }
 
-function imageExists(url){
-    var image = new Image();
+function loadImage(img, path) {
+    var downloadingImage = new Image();
 
-    image.src = url;
+    downloadingImage.onload = function(){
+        img.src = this.src;
 
-    if (!image.complete) {
-        return false;
-    }
-    else if (image.height === 0) {
-        return false;
-    }
+        // Remove the text label
+        var imgChildren = img.parentNode.childNodes;
+        img.parentNode.removeChild(imgChildren[1]);
+    };
 
-    return true;
+    downloadingImage.src = path;
 }
 
 function refreshEverything() {

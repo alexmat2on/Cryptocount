@@ -1,4 +1,14 @@
 var assetDivs = [];
+var txnTableCols = ["Date", "Buy/Sell", "Amount", "Price (BTC)", "Price (USD)"];
+var txnTableInserts =
+    [
+        "<input type='date'></input>",
+        "<select name='buySell'><option value='buy'>Buy</option><option value='sell'>Sell</option></select>",
+        "<input type='text'></input>",
+        "<input type='text'></input>",
+        "<input type='text'></input>"
+    ];
+var txnTableColIsNumeric = [false, false, true, true];
 
 function updateAssetDivs() {
     if (localStorage.totalWorth !== null) {
@@ -33,6 +43,27 @@ function updateAssetDivs() {
             worth.setAttribute("id", newAsset.id+"_worth");
             worth.innerHTML = localStorage.getItem(newAsset.id+"_worth");
 
+            // Add a table to list the purchase/sell history
+            var txnTable = document.createElement("TABLE");
+            txnTable.setAttribute("class", "txn_table");
+            txnTable.setAttribute("id", newAsset.id+"_txn_table");
+            var txnTableHeader = txnTable.createTHead();
+
+            var row = txnTableHeader.insertRow(0);
+            var rowForInsert = txnTable.insertRow();
+
+            for (var i = 0; i < txnTableCols.length; i++) {
+                var headerCell = row.insertCell(i);
+                headerCell.innerHTML = txnTableCols[i];
+
+                var newCell = rowForInsert.insertCell(i);
+                newCell.innerHTML = txnTableInserts[i];
+            }
+
+            var submitCell = rowForInsert.insertCell();
+            var submitOnClick = "addTxnToTable('" + newAsset.id + "')";
+            submitCell.innerHTML = "<button onclick=" + submitOnClick + ">Submit</button>";
+
             // Add a form to add an amount of assets you've obtained
             var amountAddInput = document.createElement("INPUT");
             amountAddInput.setAttribute("id", newAsset.id+"_amountAddInput");
@@ -59,8 +90,13 @@ function updateAssetDivs() {
             newAsset.appendChild(price);
             newAsset.appendChild(amount);
             newAsset.appendChild(worth);
+
+            newAsset.appendChild(txnTable);
+            newAsset.appendChild(document.createElement("BR"));
+
             newAsset.appendChild(amountAddInput);
             newAsset.appendChild(addAcceptBtn);
+
             newAsset.appendChild(document.createElement("BR"));
             newAsset.appendChild(amountRemoveInput);
             newAsset.appendChild(removeAcceptBtn);
@@ -98,45 +134,83 @@ function openTab(evt, tabName) {
     evt.currentTarget.className += " active";
 }
 
-function addAmount(assetDiv) {
-    // Add a new amount of an asset to the portfolio.
-    var asset = assetDiv.id;
-    var addAmount = document.getElementById(asset+"_amountAddInput");
+function addTxnToTable(assetName) {
+    var table = document.getElementById(assetName + "_txn_table");
+    var tableRows = table.rows;
+    var numRows = tableRows.length;
 
-    var textAmount = addAmount.value;
-    textAmount = +textAmount + +localStorage.getItem(asset+"_amount");
+    var newRow = table.insertRow(numRows - 1);
 
-    localStorage.setItem(asset+"_amount", textAmount);
-    localStorage.setItem(asset+"_worth", textAmount*getUSD(asset));
+    var newVals = [];
+    var clearToInsert = true;
 
-    var amountP = document.getElementById(asset+"_amount");
-    var worthP = document.getElementById(asset+"_worth");
+    for (var i = 0; i < tableRows[0].cells.length; i++) {
+        var userVals = tableRows[numRows].cells[i].firstChild.value;
 
-    amountP.innerHTML = "Amount: " + localStorage.getItem(asset+"_amount");
-    worthP.innerHTML = "Worth: $" + localStorage.getItem(asset+"_worth");
+        if (txnTableColIsNumeric[i]) {
+            if (!Number(userVals)) {
+                alert("Amounts must be numbers!");
+                clearToInsert = false;
+                break;
+            } else if (Number(userVals) < 0) {
+                alert("Amounts must be positive!");
+                clearToInsert = false;
+                break;
+            }
+            userVals = Number(userVals);
+        }
+        newVals.push(userVals);
+        console.log("test");
+    }
 
-    addAmount.value = "";
+    if (clearToInsert) {
+        if (newVals[1] == "buy") {
+            addAmount(assetName, newVals[2]);
+        } else {
+            removeAmount(assetName, newVals[2]);
+        }
+
+        for (var i = 0; i < tableRows[0].cells.length; i++) {
+            var cell = newRow.insertCell();
+            cell.innerHTML = newVals[i];
+        }
+    }
 }
 
-function removeAmount(assetDiv) {
-    // Remove some amount of an asset from the portfolio.
-    var asset = assetDiv.id;
-    var removeAmount = document.getElementById(asset+"_amountRemoveInput");
+function tableToArray(asset) {
+    var tableArray = [];
+    
+}
 
-    var textAddAmount = localStorage.getItem(asset+"_amount");
-    var textRemoveAmount = removeAmount.value;
-    var textAmount = textAddAmount - textRemoveAmount;
+function addAmount(asset, amount) {
+    // Add a new amount of an asset to the portfolio.
 
-    localStorage.setItem(asset+"_amount", textAmount);
-    localStorage.setItem(asset+"_worth", textAmount*getUSD(asset));
+    amount = +amount + +localStorage.getItem(asset+"_amount");
+
+    localStorage.setItem(asset+"_amount", amount);
+    localStorage.setItem(asset+"_worth", amount*getUSD(asset));
 
     var amountP = document.getElementById(asset+"_amount");
     var worthP = document.getElementById(asset+"_worth");
 
     amountP.innerHTML = "Amount: " + localStorage.getItem(asset+"_amount");
     worthP.innerHTML = "Worth: $" + localStorage.getItem(asset+"_worth");
+}
 
-    removeAmount.value = "";
+function removeAmount(asset, amount) {
+    // Remove some amount of an asset from the portfolio.
+
+    var currentAmount = localStorage.getItem(asset+"_amount");
+    var newAmount = currentAmount - amount;
+
+    localStorage.setItem(asset+"_amount", newAmount);
+    localStorage.setItem(asset+"_worth", newAmount*getUSD(asset));
+
+    var amountP = document.getElementById(asset+"_amount");
+    var worthP = document.getElementById(asset+"_worth");
+
+    amountP.innerHTML = "Amount: " + localStorage.getItem(asset+"_amount");
+    worthP.innerHTML = "Worth: $" + localStorage.getItem(asset+"_worth");
 }
 
 function getTotalWorth() {
