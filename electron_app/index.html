@@ -1,0 +1,56 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Cryptocount</title>
+    <link rel="shortcut icon" type="image/pngn" href="favicon.png">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/light_theme.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
+</head>
+<body>
+    <div id="tabnav">
+        <div id="add-dropdown">
+            <div id="add-dropdown-content">
+                 <input id="coin-search" type="text" name="search"
+                 onkeyup="filterDropdown();" placeholder="Search...">
+            </div>
+            <button class="add-dropbtn">
+                <i class="material-icons">add_circle_outline</i>
+            </button>
+        </div>
+    </div> <!-- tabnav -->
+    <div id="banner2"></div>
+
+    <div id="container">
+        <div id="overview" class="tabcontent">
+            <h2 id="totalWorth" style="font-size: 68px;"></h2>
+        </div>
+
+        <!-- dynamically create new divs for added assets -->
+
+    </div> <!-- container -->
+    <div id="banner">
+        <h1>Cryptocount</h1>
+        <div id="icons">
+            <button onclick="refreshEverything();">
+                <i class="material-icons">refresh</i>
+            </button>
+            <button onclick="toggleSettings();">
+                <i class="material-icons">settings</i>
+            </button>
+        </div>
+    </div>
+
+    <div id="settings">
+        <h2 class="settings-item">Settings</h2>
+        <button class="settings-item" onclick="alert('Coming soon!')">Export Investment Data</button>
+        <button class="settings-item" onclick="alert('Coming soon!')">Import Investment Data</button>
+        <br/><br/>
+        <button class="settings-item" onclick="resetData();">Reset Data</button>
+    </div>
+</body>
+</html>
+
+<script src="js/functions.js"></script>
+<script src="js/init.js"></script>

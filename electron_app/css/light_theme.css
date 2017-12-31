@@ -1,0 +1,83 @@
+/* COLOR SCHEME
+ * --------------------
+ * red:         #d62c19
+ * orange:      #efa811
+ * light-grey:  #f0f2f7
+ * dark:        #201324
+*/
+
+html {
+    background-color: #f0f2f7;
+    color: #201324;
+}
+
+p {
+    color: #d62c19
+}
+
+#banner {
+    background-color: #d62c19;
+}
+
+#icons button {
+    background-color: #d62c19;
+}
+
+#banner2 {
+    background-color: #efa811;
+}
+
+#tabnav {
+    background: #201324;
+}
+
+/* Style the tabs */
+#tabnav .tablinks {
+    background-color: #201324;
+    color: #fff;
+}
+
+/* Change background color of buttons on hover */
+div#tabnav button:hover {
+    background-color: #f0f2f7;
+    color: #201324;
+}
+
+/* Create an active/current tablink class */
+#tabnav button.active {
+    background-color: #efa811;
+    color: #201324;
+}
+
+#plusButton {
+    background-color: #15c627;
+}
+
+/* ------------------------- */
+.add-dropbtn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* Dropdown Content (Hidden by Default) */
+#add-dropdown-content {
+    background-color: #f9f9f9;
+}
+
+/* Change color of dropdown links on hover */
+#add-dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+#add-dropdown:hover .add-dropbtn {
+    background-color: #3e8e41;
+    color: #201324;
+}
+
+.del-button {
+    background-color: #d62c19;
+    color: fff;
+}
+
+#settings {
+    background-color: #f9f9f9;
+}

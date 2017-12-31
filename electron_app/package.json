@@ -1,0 +1,21 @@
+{
+  "name": "cryptocount",
+  "version": "1.0.0",
+  "description": "A desktop cryptocurrency portfolio tracker",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/alexmat2on/Cryptocount",
+  "keywords": [
+    "Electron",
+    "bitcoin",
+    "cryptocurrency",
+    "price tracker"
+  ],
+  "author": "alexmat2on",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "electron": "~1.7.8"
+  }
+}
